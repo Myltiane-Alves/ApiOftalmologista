@@ -1,0 +1,20 @@
+{
+    "host": "localhost",
+    "port": 3306,
+    "username": "root",
+    "password": "95325414",
+    "database": "oftalmologia",
+    "synchronize": true,
+    "logging": false,
+    "entities" : [
+        "src/typeorm/**/*.ts"
+    ],
+    "migrations": [
+        "src/typeorm/migrations/**/*.ts"
+    ],
+    "cli": {
+        "entitiesDir": "src/app/models/entity",
+        "migrationsDir": "src/database/migrations/",
+        "subscribersDir": "src/typeorm/subscriber"
+    }
+}
