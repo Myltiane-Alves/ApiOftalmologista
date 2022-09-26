@@ -1,16 +1,21 @@
-import {  ConnectionOptions } from "typeorm";
+import 'dotenv/config';
+import 'reflect-metadata';
 
-const connectionOptions: ConnectionOptions  = {
+import {  DataSource } from "typeorm";
+import { Contact } from '../app/entities/Contact';
+
+export const AppDataSource = new DataSource({
     type: "mysql",
-    host: process.env.TYPEORM_HOST,
-    port: +process.env.TYPEORM_PORT,
+    host: "localhost",
+    port: Number("3306"),
     username: process.env.TYPEORM_USERNAME,
     password: process.env.TYPEORM_PASSWORD,
-    database: process.env.TYPEORM_DATABASE,
-    entities: ["./src/app/models/*.ts"],
-    migrations: ["./src/database/migrations/*.ts"],
+    migrations: ["src/database/migrations/*.ts"],
+    database: "oftalmologia",
+    entities: [Contact],
+    synchronize: true,
+    logging: true,
+    logger: "file",
     
-}
-
-export = connectionOptions;
+})
 

@@ -1,7 +1,7 @@
 import express from "express";
 import routes from './routes'
 import bodyParser from "body-parser";
-import "./database";
+import "../src/config/database";
 import authMiddleware from "./app/middlewares/authMiddleware";
 import { cors } from './app/middlewares/cors';
 
