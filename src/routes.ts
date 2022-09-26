@@ -15,7 +15,10 @@ class Routes {
         });
 
         this.routes.get('/users', UserController.getAll);
+        this.routes.put('/users/resetPassword', UserController.resetPassword);
+        this.routes.get('/users/:id', UserController.getById);
         this.routes.post('/users', UserController.store);
+        this.routes.delete('/users/:id', UserController.delete);
 
         this.routes.post('/contacts', ContactController.store);
         this.routes.get('/contacts', ContactController.getAll);
