@@ -1,5 +1,6 @@
 import { Router } from "express";
 import ContactController from "./app/controllers/ContactController";
+import UserController from "./app/controllers/UserController";
 
 class Routes {
     routes: Router;
@@ -12,6 +13,9 @@ class Routes {
         this.routes.get("/ping", (req, res) => {
             res.status(200).json({ pong: new Date() });
         });
+
+        this.routes.get('/users', UserController.getAll);
+        this.routes.post('/users', UserController.store);
 
         this.routes.post('/contacts', ContactController.store);
         this.routes.get('/contacts', ContactController.getAll);

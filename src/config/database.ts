@@ -3,6 +3,7 @@ import 'reflect-metadata';
 
 import {  DataSource } from "typeorm";
 import { Contact } from '../app/entities/Contact';
+import { User } from '../app/entities/User';
 
 export const AppDataSource = new DataSource({
     type: "mysql",
@@ -12,7 +13,7 @@ export const AppDataSource = new DataSource({
     password: process.env.TYPEORM_PASSWORD,
     migrations: ["src/database/migrations/*.ts"],
     database: "oftalmologia",
-    entities: [Contact],
+    entities: [Contact, User],
     synchronize: true,
     logging: true,
     logger: "file",
