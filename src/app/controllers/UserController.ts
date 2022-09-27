@@ -89,6 +89,7 @@ class UserController {
         return res.json(users);
     }
 
+    
     async getById(req: Request, res: Response,) {
         const user = await userRepository.findOne({
             where: { id: Number(req.params.id) },
