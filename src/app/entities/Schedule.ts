@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("contacts")
-export class Contact {
+@Entity("schedules")
+export class Schedule {
     @PrimaryGeneratedColumn("increment")
     id: number;
 
@@ -14,6 +14,9 @@ export class Contact {
     @Column()
     phone: string;
 
+    @CreateDateColumn()
+    date: Date;
+
     @Column()
     message: string;
 
@@ -22,4 +25,5 @@ export class Contact {
 
     @CreateDateColumn()
     updatedAt: Date;
+
 }

@@ -4,6 +4,7 @@ import { userRepository } from "../repositories/userRepository";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
+
 interface TokenPayload {
     id: number;
     iat: number;
@@ -27,6 +28,14 @@ class UserController {
             password
         } = req.body;
 
+        const userExists = await userRepository.findOne({
+            where: { email: req.body.email },
+        });
+
+        if(userExists) {
+            return res.status(409).json({ message: "User already exists" });
+        }
+
         try {
             const newUser = userRepository.create({
                 name,
@@ -43,16 +52,93 @@ class UserController {
             });
 
             await userRepository.save(newUser);
-
-            return res.status(201).json(newUser);
+                        
         } catch (error) {
             return res.status(500).json(error);
         }
+
+        return res.status(201).json({ message: "User created" });
+       
+    }
+
+    async getByEmail(req: Request, res: Response) {
+
+        const user = await userRepository.findOne({
+            where: { email: req.body.email },
+            select: [
+                "email"
+            ]
+        })
+
+        if(!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        
+        return res.json({ message: "Email already exists" });
+    }
+
+    async verify(req: Request, res: Response) {
+        
+        try {
+           const emailExist =  await userRepository.findOne({
+                where: { email: req.body.email },
+           }); 
+
+              if(emailExist) {
+                return res.status(409).json({ message: "Email already exists" });
+              }
+        } catch {
+            return res.status(404).json({ message: "Email not found" });
+        }
+
+    }
+
+    async checkPassword(req: Request, res: Response) {
+        const user = await userRepository.findOne({
+            where: { email: req.body.email },
+            select: [
+                "password"
+            ]
+        });
+
+        if(!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        const isValidPassword = await bcrypt.compare(req.body.password, user.password);
+
+        if(!isValidPassword) {
+            return res.status(401).json({ message: "Invalid password" });
+        }
+
+        return res.status(200).json({ message: "Password is valid" });
+
+    }
+
+    async changePassword(req: Request, res: Response) {
+
+        const user = await userRepository.findOne({
+            where: { email: req.body.email },
+            select: [
+                "password"
+
+            ]
+        })
+
+        if(!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        let passwordHash = await bcrypt.hash(req.body.password, 8);
+        let userUpdated = await userRepository.update(user.id, {
+            password: passwordHash
+        });
+
+        return res.json(userUpdated);
+       
     }
 
     async updated(req: Request, res: Response) {
-
-        
 
         const userUpdated = await userRepository.findOne({
             where: { id: Number(req.params.id) }
@@ -71,7 +157,7 @@ class UserController {
         )
     }
 
-    async getAll(req: Request, res: Response) {
+    async getAll(req: Request, res: Response,) {
         const users = await userRepository.find({
             select: [
                 'id',

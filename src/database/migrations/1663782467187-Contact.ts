@@ -55,7 +55,7 @@ export class Contact1663782467187 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('contact');
+        await queryRunner.dropTable('contacts');
     }
 
 }

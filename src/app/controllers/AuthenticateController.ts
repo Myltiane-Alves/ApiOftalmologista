@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { userRepository } from "../repositories/userRepository";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import UserController from "./UserController";
 
 class AuthenticateController {
 
@@ -34,32 +35,6 @@ class AuthenticateController {
 
     }
 
-    async verify(req: Request, res: Response) {
-        
-        try {
-            await this.getByEmail(req, res, ); 
-            return res.status(200).json({ message: "Email already exists" });
-        } catch {
-            return res.status(404).json({ message: "Email not found" });
-        }
-
-    }
-
-    async getByEmail(req: Request, res: Response, ) {
-
-        const user = await userRepository.findOne({
-            where: { email: req.body.email },
-            select: [
-                "email"
-            ]
-        })
-
-        if(!user) {
-            return res.status(404).json({ message: "User not found" });
-        }
-        
-        return res.json({ message: "Email already exists" });
-    }
 }
 
 export default new AuthenticateController;
