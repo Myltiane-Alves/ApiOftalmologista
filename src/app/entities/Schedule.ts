@@ -9,6 +9,9 @@ export class Schedule {
     name: string;
 
     @Column()
+    service: string;
+    
+    @Column()
     email: string;
 
     @Column()

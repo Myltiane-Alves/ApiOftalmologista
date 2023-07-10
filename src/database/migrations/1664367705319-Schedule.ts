@@ -20,6 +20,12 @@ export class Schedule1664367705319 implements MigrationInterface {
                     isNullable: false
                 },
                 {
+                    name: "service",
+                    type: "varchar",
+                    length: "255",
+                    isNullable: false
+                },
+                {
                     name: "email",
                     type: "varchar",
                     length: "255",
@@ -55,7 +61,9 @@ export class Schedule1664367705319 implements MigrationInterface {
                     default: "CURRENT_TIMESTAMP"
                 }
             ]
-        }))
+        }));
+
+     
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

@@ -17,7 +17,8 @@
 	},
 	"include": ["src/**/*"],
 	"exclude": ["node_modules", "dist"],
-	"ts-node": {
-		"files": true
+	"ts-node-dev": {
+		"files": true,
+		"disableGlob": true
 	}
 }

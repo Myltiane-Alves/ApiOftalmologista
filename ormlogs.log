@@ -35020,3 +35020,4129 @@
 [2022-09-29T19:03:20.036Z][QUERY]: SELECT VERSION() AS `version`
 [2022-09-29T19:03:20.042Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
 [2022-09-29T19:03:20.054Z][QUERY]: COMMIT
+[2023-07-01T14:34:55.535Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-01T14:34:55.784Z][QUERY]: START TRANSACTION
+[2023-07-01T14:34:55.787Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-01T14:34:55.792Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-01T14:34:55.901Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-01T14:34:55.902Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-01T14:34:55.903Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-01T14:34:55.904Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-01T14:34:55.904Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-01T14:34:56.029Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-01T14:34:56.034Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-01T14:34:56.043Z][QUERY]: COMMIT
+[2023-07-05T16:03:24.932Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-05T16:03:25.193Z][QUERY]: START TRANSACTION
+[2023-07-05T16:03:25.196Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-05T16:03:25.204Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-05T16:03:25.308Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-05T16:03:25.309Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-05T16:03:25.310Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-05T16:03:25.310Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-05T16:03:25.311Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-05T16:03:25.388Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-05T16:03:25.394Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-05T16:03:25.403Z][QUERY]: COMMIT
+[2023-07-07T16:06:39.067Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-07T16:06:39.301Z][QUERY]: START TRANSACTION
+[2023-07-07T16:06:39.304Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-07T16:06:39.312Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-07T16:06:39.428Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-07T16:06:39.429Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-07T16:06:39.430Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-07T16:06:39.431Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-07T16:06:39.431Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-07T16:06:39.501Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-07T16:06:39.508Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-07T16:06:39.517Z][QUERY]: COMMIT
+[2023-07-10T12:02:28.573Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T12:02:28.829Z][QUERY]: START TRANSACTION
+[2023-07-10T12:02:28.832Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-10T12:02:28.837Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-10T12:02:28.932Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-10T12:02:28.934Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-10T12:02:28.935Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-10T12:02:28.936Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-10T12:02:28.936Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-10T12:02:28.989Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T12:02:28.995Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-10T12:02:29.004Z][QUERY]: COMMIT
+[2023-07-10T12:30:15.374Z][QUERY]: SELECT `Schedule`.`id` AS `Schedule_id`, `Schedule`.`name` AS `Schedule_name`, `Schedule`.`email` AS `Schedule_email`, `Schedule`.`phone` AS `Schedule_phone`, `Schedule`.`date` AS `Schedule_date`, `Schedule`.`message` AS `Schedule_message`, `Schedule`.`createdAt` AS `Schedule_createdAt`, `Schedule`.`updatedAt` AS `Schedule_updatedAt` FROM `schedules` `Schedule`
+[2023-07-10T13:03:09.726Z][QUERY]: SELECT `Schedule`.`id` AS `Schedule_id`, `Schedule`.`name` AS `Schedule_name`, `Schedule`.`email` AS `Schedule_email`, `Schedule`.`phone` AS `Schedule_phone`, `Schedule`.`date` AS `Schedule_date`, `Schedule`.`message` AS `Schedule_message`, `Schedule`.`createdAt` AS `Schedule_createdAt`, `Schedule`.`updatedAt` AS `Schedule_updatedAt` FROM `schedules` `Schedule`
+[2023-07-10T13:03:09.752Z][QUERY]: SELECT `Schedule`.`id` AS `Schedule_id`, `Schedule`.`name` AS `Schedule_name`, `Schedule`.`email` AS `Schedule_email`, `Schedule`.`phone` AS `Schedule_phone`, `Schedule`.`date` AS `Schedule_date`, `Schedule`.`message` AS `Schedule_message`, `Schedule`.`createdAt` AS `Schedule_createdAt`, `Schedule`.`updatedAt` AS `Schedule_updatedAt` FROM `schedules` `Schedule`
+[2023-07-10T13:03:37.320Z][QUERY]: SELECT `Schedule`.`id` AS `Schedule_id`, `Schedule`.`name` AS `Schedule_name`, `Schedule`.`email` AS `Schedule_email`, `Schedule`.`phone` AS `Schedule_phone`, `Schedule`.`date` AS `Schedule_date`, `Schedule`.`message` AS `Schedule_message`, `Schedule`.`createdAt` AS `Schedule_createdAt`, `Schedule`.`updatedAt` AS `Schedule_updatedAt` FROM `schedules` `Schedule`
+[2023-07-10T13:04:01.106Z][QUERY]: SELECT `Schedule`.`id` AS `Schedule_id`, `Schedule`.`name` AS `Schedule_name`, `Schedule`.`email` AS `Schedule_email`, `Schedule`.`phone` AS `Schedule_phone`, `Schedule`.`date` AS `Schedule_date`, `Schedule`.`message` AS `Schedule_message`, `Schedule`.`createdAt` AS `Schedule_createdAt`, `Schedule`.`updatedAt` AS `Schedule_updatedAt` FROM `schedules` `Schedule`
+[2023-07-10T13:04:14.873Z][QUERY]: SELECT `Schedule`.`id` AS `Schedule_id`, `Schedule`.`name` AS `Schedule_name`, `Schedule`.`email` AS `Schedule_email`, `Schedule`.`phone` AS `Schedule_phone`, `Schedule`.`date` AS `Schedule_date`, `Schedule`.`message` AS `Schedule_message`, `Schedule`.`createdAt` AS `Schedule_createdAt`, `Schedule`.`updatedAt` AS `Schedule_updatedAt` FROM `schedules` `Schedule`
+[2023-07-10T13:04:14.875Z][QUERY]: SELECT `Schedule`.`id` AS `Schedule_id`, `Schedule`.`name` AS `Schedule_name`, `Schedule`.`email` AS `Schedule_email`, `Schedule`.`phone` AS `Schedule_phone`, `Schedule`.`date` AS `Schedule_date`, `Schedule`.`message` AS `Schedule_message`, `Schedule`.`createdAt` AS `Schedule_createdAt`, `Schedule`.`updatedAt` AS `Schedule_updatedAt` FROM `schedules` `Schedule`
+[2023-07-10T13:05:04.014Z][QUERY]: SELECT `Schedule`.`id` AS `Schedule_id`, `Schedule`.`name` AS `Schedule_name`, `Schedule`.`email` AS `Schedule_email`, `Schedule`.`phone` AS `Schedule_phone`, `Schedule`.`date` AS `Schedule_date`, `Schedule`.`message` AS `Schedule_message`, `Schedule`.`createdAt` AS `Schedule_createdAt`, `Schedule`.`updatedAt` AS `Schedule_updatedAt` FROM `schedules` `Schedule`
+[2023-07-10T13:06:40.191Z][QUERY]: SELECT `Schedule`.`id` AS `Schedule_id`, `Schedule`.`name` AS `Schedule_name`, `Schedule`.`email` AS `Schedule_email`, `Schedule`.`phone` AS `Schedule_phone`, `Schedule`.`date` AS `Schedule_date`, `Schedule`.`message` AS `Schedule_message`, `Schedule`.`createdAt` AS `Schedule_createdAt`, `Schedule`.`updatedAt` AS `Schedule_updatedAt` FROM `schedules` `Schedule`
+[2023-07-10T13:06:54.170Z][QUERY]: SELECT `Schedule`.`id` AS `Schedule_id`, `Schedule`.`name` AS `Schedule_name`, `Schedule`.`email` AS `Schedule_email`, `Schedule`.`phone` AS `Schedule_phone`, `Schedule`.`date` AS `Schedule_date`, `Schedule`.`message` AS `Schedule_message`, `Schedule`.`createdAt` AS `Schedule_createdAt`, `Schedule`.`updatedAt` AS `Schedule_updatedAt` FROM `schedules` `Schedule`
+[2023-07-10T13:07:33.968Z][QUERY]: SELECT `Schedule`.`id` AS `Schedule_id`, `Schedule`.`name` AS `Schedule_name`, `Schedule`.`email` AS `Schedule_email`, `Schedule`.`phone` AS `Schedule_phone`, `Schedule`.`date` AS `Schedule_date`, `Schedule`.`message` AS `Schedule_message`, `Schedule`.`createdAt` AS `Schedule_createdAt`, `Schedule`.`updatedAt` AS `Schedule_updatedAt` FROM `schedules` `Schedule`
+[2023-07-10T13:07:52.499Z][QUERY]: SELECT `Schedule`.`id` AS `Schedule_id`, `Schedule`.`name` AS `Schedule_name`, `Schedule`.`email` AS `Schedule_email`, `Schedule`.`phone` AS `Schedule_phone`, `Schedule`.`date` AS `Schedule_date`, `Schedule`.`message` AS `Schedule_message`, `Schedule`.`createdAt` AS `Schedule_createdAt`, `Schedule`.`updatedAt` AS `Schedule_updatedAt` FROM `schedules` `Schedule`
+[2023-07-10T13:08:20.045Z][QUERY]: SELECT `Schedule`.`id` AS `Schedule_id`, `Schedule`.`name` AS `Schedule_name`, `Schedule`.`email` AS `Schedule_email`, `Schedule`.`phone` AS `Schedule_phone`, `Schedule`.`date` AS `Schedule_date`, `Schedule`.`message` AS `Schedule_message`, `Schedule`.`createdAt` AS `Schedule_createdAt`, `Schedule`.`updatedAt` AS `Schedule_updatedAt` FROM `schedules` `Schedule`
+[2023-07-10T13:12:50.744Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:12:50.797Z][QUERY]: START TRANSACTION
+[2023-07-10T13:12:50.800Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-10T13:12:50.802Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-10T13:12:50.818Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-10T13:12:50.819Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-10T13:12:50.819Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-10T13:12:50.820Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-10T13:12:50.820Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-10T13:12:50.853Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:12:50.859Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-10T13:12:50.866Z][QUERY]: COMMIT
+[2023-07-10T13:13:06.052Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:13:06.101Z][QUERY]: START TRANSACTION
+[2023-07-10T13:13:06.105Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-10T13:13:06.107Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-10T13:13:06.128Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-10T13:13:06.129Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-10T13:13:06.129Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-10T13:13:06.130Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-10T13:13:06.130Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-10T13:13:06.170Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:13:06.183Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-10T13:13:06.190Z][QUERY]: ALTER TABLE `schedules` ADD `service` varchar(255) NOT NULL
+[2023-07-10T13:13:06.299Z][QUERY]: COMMIT
+[2023-07-10T13:13:16.778Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:13:16.833Z][QUERY]: START TRANSACTION
+[2023-07-10T13:13:16.839Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-10T13:13:16.841Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-10T13:13:16.850Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-10T13:13:16.851Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-10T13:13:16.852Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-10T13:13:16.853Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-10T13:13:16.854Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-10T13:13:16.883Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:13:16.891Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-10T13:13:16.899Z][QUERY]: COMMIT
+[2023-07-10T13:13:21.719Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:13:21.766Z][QUERY]: START TRANSACTION
+[2023-07-10T13:13:21.770Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-10T13:13:21.772Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-10T13:13:21.787Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-10T13:13:21.788Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-10T13:13:21.788Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-10T13:13:21.789Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-10T13:13:21.789Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-10T13:13:21.816Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:13:21.822Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-10T13:13:21.830Z][QUERY]: COMMIT
+[2023-07-10T13:13:31.562Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:13:31.622Z][QUERY]: START TRANSACTION
+[2023-07-10T13:13:31.626Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-10T13:13:31.628Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-10T13:13:31.640Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-10T13:13:31.641Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-10T13:13:31.642Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-10T13:13:31.642Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-10T13:13:31.643Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-10T13:13:31.674Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:13:31.682Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-10T13:13:31.693Z][QUERY]: COMMIT
+[2023-07-10T13:17:47.425Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:17:47.474Z][QUERY]: START TRANSACTION
+[2023-07-10T13:17:47.477Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-10T13:17:47.480Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-10T13:17:47.488Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-10T13:17:47.489Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-10T13:17:47.490Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-10T13:17:47.490Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-10T13:17:47.491Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-10T13:17:47.520Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:17:47.529Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-10T13:17:47.541Z][QUERY]: COMMIT
+[2023-07-10T13:18:14.323Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:18:14.373Z][QUERY]: START TRANSACTION
+[2023-07-10T13:18:14.377Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-10T13:18:14.380Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-10T13:18:14.389Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-10T13:18:14.390Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-10T13:18:14.391Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-10T13:18:14.392Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-10T13:18:14.392Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-10T13:18:14.423Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:18:14.430Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-10T13:18:14.438Z][QUERY]: ALTER TABLE `schedules` ADD `status` varchar(255) NOT NULL
+[2023-07-10T13:18:14.459Z][QUERY]: COMMIT
+[2023-07-10T13:18:31.166Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:18:31.208Z][QUERY]: START TRANSACTION
+[2023-07-10T13:18:31.212Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-10T13:18:31.214Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-10T13:18:31.220Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-10T13:18:31.221Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-10T13:18:31.222Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-10T13:18:31.223Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-10T13:18:31.223Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-10T13:18:31.250Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:18:31.255Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-10T13:18:31.264Z][QUERY]: COMMIT
+[2023-07-10T13:18:39.625Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:18:39.670Z][QUERY]: START TRANSACTION
+[2023-07-10T13:18:39.673Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-10T13:18:39.676Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-10T13:18:39.682Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-10T13:18:39.682Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-10T13:18:39.683Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-10T13:18:39.684Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-10T13:18:39.684Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-10T13:18:39.706Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:18:39.712Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-10T13:18:39.721Z][QUERY]: COMMIT
+[2023-07-10T13:37:16.224Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:37:16.391Z][QUERY]: START TRANSACTION
+[2023-07-10T13:37:16.395Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-10T13:37:16.397Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-10T13:37:16.403Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-10T13:37:16.404Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-10T13:37:16.405Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-10T13:37:16.405Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-10T13:37:16.406Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-10T13:37:16.426Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T13:37:16.433Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-10T13:37:16.441Z][QUERY]: CREATE TABLE `schedules` (`id` int NOT NULL AUTO_INCREMENT, `name` varchar(255) NOT NULL, `service` varchar(255) NOT NULL, `status` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `phone` varchar(255) NOT NULL, `date` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), `message` varchar(255) NOT NULL, `createdAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), `updatedAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), PRIMARY KEY (`id`)) ENGINE=InnoDB
+[2023-07-10T13:37:16.478Z][QUERY]: COMMIT
+[2023-07-10T13:47:12.472Z][QUERY]: START TRANSACTION
+[2023-07-10T13:47:12.499Z][QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, DEFAULT, DEFAULT, ?, ?, ?, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane","myltiane.aux@gmail.com","61984915007","2023-07-10T13:44:00.000Z","teste"]
+[2023-07-10T13:47:12.509Z][FAILED QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, DEFAULT, DEFAULT, ?, ?, ?, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane","myltiane.aux@gmail.com","61984915007","2023-07-10T13:44:00.000Z","teste"]
+[2023-07-10T13:47:12.509Z][QUERY ERROR]: Error: Field 'service' doesn't have a default value
+[2023-07-10T13:47:12.511Z][QUERY]: ROLLBACK
+[2023-07-10T13:54:50.727Z][QUERY]: START TRANSACTION
+[2023-07-10T13:54:50.731Z][QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, DEFAULT, DEFAULT, ?, ?, ?, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane","myltiane.aux@gmail.com","61984915007","2023-07-10T13:44:00.000Z","teste"]
+[2023-07-10T13:54:50.733Z][FAILED QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, DEFAULT, DEFAULT, ?, ?, ?, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane","myltiane.aux@gmail.com","61984915007","2023-07-10T13:44:00.000Z","teste"]
+[2023-07-10T13:54:50.733Z][QUERY ERROR]: Error: Field 'service' doesn't have a default value
+[2023-07-10T13:54:50.735Z][QUERY]: ROLLBACK
+[2023-07-10T13:56:36.099Z][QUERY]: START TRANSACTION
+[2023-07-10T13:56:36.102Z][QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, DEFAULT, DEFAULT, ?, ?, ?, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves de Lima","myltiane.aux@gmail.com","(61) 98491-5007","2023-07-10T13:55:00.000Z","teste"]
+[2023-07-10T13:56:36.103Z][FAILED QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, DEFAULT, DEFAULT, ?, ?, ?, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves de Lima","myltiane.aux@gmail.com","(61) 98491-5007","2023-07-10T13:55:00.000Z","teste"]
+[2023-07-10T13:56:36.103Z][QUERY ERROR]: Error: Field 'service' doesn't have a default value
+[2023-07-10T13:56:36.104Z][QUERY]: ROLLBACK
+[2023-07-10T13:56:38.133Z][QUERY]: START TRANSACTION
+[2023-07-10T13:56:38.135Z][QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, DEFAULT, DEFAULT, ?, ?, ?, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves de Lima","myltiane.aux@gmail.com","(61) 98491-5007","2023-07-10T13:55:00.000Z","teste"]
+[2023-07-10T13:56:38.137Z][FAILED QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, DEFAULT, DEFAULT, ?, ?, ?, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves de Lima","myltiane.aux@gmail.com","(61) 98491-5007","2023-07-10T13:55:00.000Z","teste"]
+[2023-07-10T13:56:38.137Z][QUERY ERROR]: Error: Field 'service' doesn't have a default value
+[2023-07-10T13:56:38.138Z][QUERY]: ROLLBACK
+[2023-07-10T13:58:42.504Z][QUERY]: START TRANSACTION
+[2023-07-10T13:58:42.508Z][QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, DEFAULT, DEFAULT, ?, ?, DEFAULT, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves","myltiane@gmail.com","61 984915007","teste pela api"]
+[2023-07-10T13:58:42.510Z][FAILED QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, DEFAULT, DEFAULT, ?, ?, DEFAULT, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves","myltiane@gmail.com","61 984915007","teste pela api"]
+[2023-07-10T13:58:42.510Z][QUERY ERROR]: Error: Field 'service' doesn't have a default value
+[2023-07-10T13:58:42.510Z][QUERY]: ROLLBACK
+[2023-07-10T13:58:58.863Z][QUERY]: START TRANSACTION
+[2023-07-10T13:58:58.865Z][QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, ?, DEFAULT, ?, ?, DEFAULT, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves","Consulta","myltiane@gmail.com","61 984915007","teste pela api"]
+[2023-07-10T13:58:58.867Z][FAILED QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, ?, DEFAULT, ?, ?, DEFAULT, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves","Consulta","myltiane@gmail.com","61 984915007","teste pela api"]
+[2023-07-10T13:58:58.867Z][QUERY ERROR]: Error: Field 'status' doesn't have a default value
+[2023-07-10T13:58:58.867Z][QUERY]: ROLLBACK
+[2023-07-10T14:00:01.233Z][QUERY]: START TRANSACTION
+[2023-07-10T14:00:01.237Z][QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, ?, DEFAULT, ?, ?, ?, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves de Lima","Serviço","myltiano@gmail.com","(61) 98491-5007","2023-07-10T13:59:00.000Z","teste"]
+[2023-07-10T14:00:01.239Z][FAILED QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, ?, DEFAULT, ?, ?, ?, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves de Lima","Serviço","myltiano@gmail.com","(61) 98491-5007","2023-07-10T13:59:00.000Z","teste"]
+[2023-07-10T14:00:01.239Z][QUERY ERROR]: Error: Field 'status' doesn't have a default value
+[2023-07-10T14:00:01.239Z][QUERY]: ROLLBACK
+[2023-07-10T14:00:11.933Z][QUERY]: SELECT `Schedule`.`id` AS `Schedule_id`, `Schedule`.`name` AS `Schedule_name`, `Schedule`.`service` AS `Schedule_service`, `Schedule`.`status` AS `Schedule_status`, `Schedule`.`email` AS `Schedule_email`, `Schedule`.`phone` AS `Schedule_phone`, `Schedule`.`date` AS `Schedule_date`, `Schedule`.`message` AS `Schedule_message`, `Schedule`.`createdAt` AS `Schedule_createdAt`, `Schedule`.`updatedAt` AS `Schedule_updatedAt` FROM `schedules` `Schedule`
+[2023-07-10T14:01:46.647Z][QUERY]: START TRANSACTION
+[2023-07-10T14:01:46.649Z][QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, ?, DEFAULT, ?, ?, DEFAULT, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves","Consulta","myltiane@gmail.com","61 984915007","teste pela api"]
+[2023-07-10T14:01:46.650Z][FAILED QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, ?, DEFAULT, ?, ?, DEFAULT, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves","Consulta","myltiane@gmail.com","61 984915007","teste pela api"]
+[2023-07-10T14:01:46.650Z][QUERY ERROR]: Error: Field 'status' doesn't have a default value
+[2023-07-10T14:01:46.651Z][QUERY]: ROLLBACK
+[2023-07-10T14:09:30.912Z][QUERY]: START TRANSACTION
+[2023-07-10T14:09:30.914Z][QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, ?, DEFAULT, ?, ?, DEFAULT, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves","Consulta","myltiane@gmail.com","61 984915007","teste pela api"]
+[2023-07-10T14:09:30.916Z][FAILED QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, ?, DEFAULT, ?, ?, DEFAULT, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves","Consulta","myltiane@gmail.com","61 984915007","teste pela api"]
+[2023-07-10T14:09:30.916Z][QUERY ERROR]: Error: Field 'status' doesn't have a default value
+[2023-07-10T14:09:30.917Z][QUERY]: ROLLBACK
+[2023-07-10T14:09:51.243Z][QUERY]: START TRANSACTION
+[2023-07-10T14:09:51.245Z][QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, ?, DEFAULT, ?, ?, DEFAULT, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves","Consulta","myltiane@gmail.com","61 984915007","teste pela api"]
+[2023-07-10T14:09:51.246Z][FAILED QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, ?, DEFAULT, ?, ?, DEFAULT, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves","Consulta","myltiane@gmail.com","61 984915007","teste pela api"]
+[2023-07-10T14:09:51.246Z][QUERY ERROR]: Error: Field 'status' doesn't have a default value
+[2023-07-10T14:09:51.247Z][QUERY]: ROLLBACK
+[2023-07-10T14:10:17.537Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T14:10:17.704Z][QUERY]: START TRANSACTION
+[2023-07-10T14:10:17.707Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-10T14:10:17.709Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-10T14:10:17.721Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-10T14:10:17.722Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-10T14:10:17.723Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-10T14:10:17.724Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-10T14:10:17.724Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-10T14:10:17.749Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T14:10:17.754Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-10T14:10:17.762Z][QUERY]: COMMIT
+[2023-07-10T14:12:07.954Z][QUERY]: START TRANSACTION
+[2023-07-10T14:12:07.964Z][QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, ?, DEFAULT, ?, ?, DEFAULT, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves","Consulta","myltiane@gmail.com","61 984915007","teste pela api"]
+[2023-07-10T14:12:07.966Z][FAILED QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, ?, DEFAULT, ?, ?, DEFAULT, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves","Consulta","myltiane@gmail.com","61 984915007","teste pela api"]
+[2023-07-10T14:12:07.966Z][QUERY ERROR]: Error: Field 'status' doesn't have a default value
+[2023-07-10T14:12:07.967Z][QUERY]: ROLLBACK
+[2023-07-10T14:12:45.422Z][QUERY]: START TRANSACTION
+[2023-07-10T14:12:45.423Z][QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, ?, DEFAULT, ?, ?, DEFAULT, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves","Consulta","myltiane@gmail.com","61 984915007","teste pela api"]
+[2023-07-10T14:12:45.425Z][FAILED QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `status`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, ?, DEFAULT, ?, ?, DEFAULT, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves","Consulta","myltiane@gmail.com","61 984915007","teste pela api"]
+[2023-07-10T14:12:45.425Z][QUERY ERROR]: Error: Field 'status' doesn't have a default value
+[2023-07-10T14:12:45.425Z][QUERY]: ROLLBACK
+[2023-07-10T14:13:38.870Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T14:13:38.925Z][QUERY]: START TRANSACTION
+[2023-07-10T14:13:38.928Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-10T14:13:38.931Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-10T14:13:38.987Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-10T14:13:38.988Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-10T14:13:38.989Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-10T14:13:38.989Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-10T14:13:38.990Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-10T14:13:39.044Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T14:13:39.051Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-10T14:13:39.058Z][QUERY]: COMMIT
+[2023-07-10T14:15:57.660Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T14:15:57.747Z][QUERY]: START TRANSACTION
+[2023-07-10T14:15:57.757Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-10T14:15:57.760Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-10T14:15:57.773Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-10T14:15:57.774Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-10T14:15:57.775Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-10T14:15:57.775Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-10T14:15:57.776Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-10T14:15:57.815Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T14:15:57.825Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-10T14:15:57.838Z][QUERY]: COMMIT
+[2023-07-10T14:16:40.783Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T14:16:40.830Z][QUERY]: START TRANSACTION
+[2023-07-10T14:16:40.834Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-10T14:16:40.836Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-10T14:16:40.847Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-10T14:16:40.848Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-10T14:16:40.849Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-10T14:16:40.849Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-10T14:16:40.850Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-10T14:16:40.879Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T14:16:40.887Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-10T14:16:40.896Z][QUERY]: COMMIT
+[2023-07-10T14:17:11.680Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T14:17:11.729Z][QUERY]: START TRANSACTION
+[2023-07-10T14:17:11.732Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-10T14:17:11.734Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-10T14:17:11.740Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-10T14:17:11.740Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-10T14:17:11.741Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-10T14:17:11.742Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-10T14:17:11.742Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-10T14:17:11.768Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T14:17:11.775Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-10T14:17:11.783Z][QUERY]: COMMIT
+[2023-07-10T14:17:37.936Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T14:17:37.984Z][QUERY]: START TRANSACTION
+[2023-07-10T14:17:37.988Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-10T14:17:37.990Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-10T14:17:37.997Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-10T14:17:37.998Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-10T14:17:37.998Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-10T14:17:37.999Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-10T14:17:37.999Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'schedules'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-10T14:17:38.022Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T14:17:38.028Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-10T14:17:38.035Z][QUERY]: ALTER TABLE `schedules` DROP COLUMN `status`
+[2023-07-10T14:17:38.066Z][QUERY]: COMMIT
+[2023-07-10T14:18:16.412Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T14:18:16.545Z][QUERY]: START TRANSACTION
+[2023-07-10T14:18:16.560Z][QUERY]: SELECT DATABASE() AS `db_name`
+[2023-07-10T14:18:16.563Z][QUERY]: SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'contacts' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'schedules' UNION SELECT `TABLE_SCHEMA`, `TABLE_NAME` FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'users'
+[2023-07-10T14:18:16.569Z][QUERY]: 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+                 UNION 
+                SELECT
+                    *
+                FROM
+                    `INFORMATION_SCHEMA`.`COLUMNS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+                
+[2023-07-10T14:18:16.570Z][QUERY]: SELECT * FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu` WHERE `CONSTRAINT_NAME` = 'PRIMARY'
+[2023-07-10T14:18:16.571Z][QUERY]: 
+            SELECT
+                `SCHEMA_NAME`,
+                `DEFAULT_CHARACTER_SET_NAME` as `CHARSET`,
+                `DEFAULT_COLLATION_NAME` AS `COLLATION`
+            FROM `INFORMATION_SCHEMA`.`SCHEMATA`
+            
+[2023-07-10T14:18:16.571Z][QUERY]: 
+            SELECT
+                `s`.*
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`STATISTICS`
+                WHERE
+                    `TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `s`
+            LEFT JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `s`.`INDEX_NAME` = `rc`.`CONSTRAINT_NAME`
+                    AND
+                    `s`.`TABLE_SCHEMA` = `rc`.`CONSTRAINT_SCHEMA`
+            WHERE
+                `s`.`INDEX_NAME` != 'PRIMARY'
+                AND
+                `rc`.`CONSTRAINT_NAME` IS NULL
+            
+[2023-07-10T14:18:16.572Z][QUERY]: 
+            SELECT
+                `kcu`.`TABLE_SCHEMA`,
+                `kcu`.`TABLE_NAME`,
+                `kcu`.`CONSTRAINT_NAME`,
+                `kcu`.`COLUMN_NAME`,
+                `kcu`.`REFERENCED_TABLE_SCHEMA`,
+                `kcu`.`REFERENCED_TABLE_NAME`,
+                `kcu`.`REFERENCED_COLUMN_NAME`,
+                `rc`.`DELETE_RULE` `ON_DELETE`,
+                `rc`.`UPDATE_RULE` `ON_UPDATE`
+            FROM (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` `kcu`
+                WHERE
+                    `kcu`.`TABLE_SCHEMA` = 'oftalmologia'
+                    AND
+                    `kcu`.`TABLE_NAME` = 'users'
+            ) `kcu`
+            INNER JOIN (
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'contacts'
+             UNION 
+                SELECT
+                    *
+                FROM `INFORMATION_SCHEMA`.`REFERENTIAL_CONSTRAINTS`
+                WHERE
+                    `CONSTRAINT_SCHEMA` = 'oftalmologia'
+                    AND
+                    `TABLE_NAME` = 'users'
+            ) `rc`
+                ON
+                    `rc`.`CONSTRAINT_SCHEMA` = `kcu`.`CONSTRAINT_SCHEMA`
+                    AND
+                    `rc`.`TABLE_NAME` = `kcu`.`TABLE_NAME`
+                    AND
+                    `rc`.`CONSTRAINT_NAME` = `kcu`.`CONSTRAINT_NAME`
+            
+[2023-07-10T14:18:16.589Z][QUERY]: SELECT VERSION() AS `version`
+[2023-07-10T14:18:16.596Z][QUERY]: SELECT * FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'oftalmologia' AND `TABLE_NAME` = 'typeorm_metadata'
+[2023-07-10T14:18:16.604Z][QUERY]: CREATE TABLE `schedules` (`id` int NOT NULL AUTO_INCREMENT, `name` varchar(255) NOT NULL, `service` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `phone` varchar(255) NOT NULL, `date` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), `message` varchar(255) NOT NULL, `createdAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), `updatedAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), PRIMARY KEY (`id`)) ENGINE=InnoDB
+[2023-07-10T14:18:16.635Z][QUERY]: COMMIT
+[2023-07-10T14:19:06.956Z][QUERY]: START TRANSACTION
+[2023-07-10T14:19:06.966Z][QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, ?, ?, ?, DEFAULT, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves","Consulta","myltiane@gmail.com","61 984915007","teste pela api"]
+[2023-07-10T14:19:06.985Z][QUERY]: SELECT `Schedule`.`id` AS `Schedule_id`, `Schedule`.`date` AS `Schedule_date`, `Schedule`.`createdAt` AS `Schedule_createdAt`, `Schedule`.`updatedAt` AS `Schedule_updatedAt` FROM `schedules` `Schedule` WHERE `Schedule`.`id` = ? -- PARAMETERS: [1]
+[2023-07-10T14:19:06.992Z][QUERY]: COMMIT
+[2023-07-10T14:19:21.374Z][QUERY]: START TRANSACTION
+[2023-07-10T14:19:21.380Z][QUERY]: INSERT INTO `schedules`(`id`, `name`, `service`, `email`, `phone`, `date`, `message`, `createdAt`, `updatedAt`) VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, DEFAULT, DEFAULT) -- PARAMETERS: ["Myltiane Alves de Lima","Serviço","myltiano@gmail.com","(61) 98491-5007","2023-07-10T13:59:00.000Z","teste"]
+[2023-07-10T14:19:21.388Z][QUERY]: SELECT `Schedule`.`id` AS `Schedule_id`, `Schedule`.`date` AS `Schedule_date`, `Schedule`.`createdAt` AS `Schedule_createdAt`, `Schedule`.`updatedAt` AS `Schedule_updatedAt` FROM `schedules` `Schedule` WHERE `Schedule`.`id` = ? -- PARAMETERS: [2]
+[2023-07-10T14:19:21.391Z][QUERY]: COMMIT

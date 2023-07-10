@@ -6,6 +6,7 @@ class ScheduleController {
     async store(req: Request, res: Response) {
         const  {
             name,
+            service,
             email,
             phone,
             date,
@@ -16,6 +17,7 @@ class ScheduleController {
 
             const newSchedule = scheduleRepository.create({
                 name,
+                service,
                 email,
                 phone,
                 date,
